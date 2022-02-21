@@ -12,7 +12,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: './public/index.html'
-        })
+        }),
     ],
     devServer: {
         static: './dist/',
@@ -39,11 +39,23 @@ module.exports = {
             test: /\.scss$/,
             use:[
                 'style-loader',
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules: true,
+                    },
+                },
+                'sass-loader',
+            ],
+            
+        },
+        {
+            test: /\.css$/,
+            use:[
+                'style-loader',
                 'css-loader',
-                'sass-loader'
-            ]
+            ],
         }
-        
         ],
     },
 };
